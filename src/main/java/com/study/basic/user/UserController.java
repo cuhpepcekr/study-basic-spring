@@ -2,6 +2,7 @@ package com.study.basic.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,5 +21,13 @@ public class UserController {
         List<User> users = userService.getUsers();
 
         return users;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public User createUser(@RequestBody User user) {
+        User createdUser = userService.createUser(user);
+
+        return createdUser;
     }
 }
